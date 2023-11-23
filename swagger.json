@@ -1,0 +1,450 @@
+
+
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "RestApi",
+      "version": "1.0.0",
+      "description": "API documentation for user functionality in the ETHERS project."
+    },
+    "components":{
+      "securitySchemes":{
+        "bearerAuth":{
+          "type":"http",
+          "scheme":"bearer",
+          "bearerFormat":"JWT"
+        }
+      }
+    },
+    "security":[
+{
+  "bearerAuth":[]
+}
+    ],
+    "servers": [
+      {
+        "url": "http://localhost:3000"
+      }
+    ],
+    "paths": {
+      "/register": {
+        "post": {
+          "summary": "Register Super Admin",
+          "description": "Endpoint for registering a new super admin.",
+          "requestBody": {
+            "description": "Super admin registration details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "example": "Anil Singh"
+                    },
+                    "email": {
+                      "type": "string",
+                      "example": "anil123@gmail.com"
+                    },
+                    "phone": {
+                      "type": "string",
+                      "example": "1234567890"
+                    }
+                  },
+                  "required": ["name", "email", "phone"]
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Super admin registered successfully."
+            },
+            "400": {
+              "description": "Email is already registered."
+            },
+            "500": {
+              "description": "Internal Server Error."
+            }
+          }
+        }
+      },
+      
+      "/login": {
+        "post": {
+          "summary": "SuperAdmin , Admin and Employee login in",
+          "description": "Endpoint for SuperAdmin , Admin and Employee log in.",
+          "requestBody": {
+            "description": "SuperAdmin , Admin and Employee login credentials.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "email": {
+                      "type": "string",
+                      "example": "nil123@gmail.com"
+                    },
+                    "privateKey": {
+                      "type": "string",
+                      "example": "0xb371f38941ed1bcbf0ea6a4990766777fd3fc1dfd544e1ca8df88040ce5afd39"
+                    }
+                  },
+                  "required": ["email", "privateKey"]
+                }
+              }
+            }
+          },
+            "responses": {
+              "201": {
+                "description": "Super Admin logged in successfully."
+              },
+              "401": {
+                "description": "Invalid credentials."
+              }
+            }
+          }
+      },
+      
+   
+      
+      
+      "/super/companyadd": {
+        "post": {
+          "summary": "Add Company",
+          "description": "Endpoint for creating a new company.",
+          "requestBody": {
+            "description": "Company details.",
+            "content": {
+              "multipart/form-data": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "example": "Company Name"
+                    },
+                    "logo": {
+                      "type": "string",
+                      "format": "binary"
+                    },
+                    "address": {
+                      "type": "string",
+                      "example": "Company Address"
+                    }
+                  },
+                  "required": ["name", "address"]
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Company created successfully."
+            },
+            "400": {
+              "description": "Bad request."
+            },
+            "401": {
+              "description": "Unauthorized."
+            }
+          }
+        }
+      },
+      
+      
+      "/super/adminadd": {
+        "post": {
+          "summary": "Add Admin",
+          "description": "Endpoint for creating a new admin.",
+          "requestBody": {
+            "description": "Admin details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "example": "Gaurav Chadda"
+                    },
+                    "email": {
+                      "type": "string",
+                      "example": "mailto:mudit@example.com"
+                    },
+                    "phone": {
+                      "type": "string",
+                      "example": "1234567890"
+                    },
+                    "company_id": {
+                      "type": "integer",
+                      "example": 1
+                    }
+                  },
+                  "required": ["name", "email", "phone", "companyId"]
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Admin created successfully."
+            },
+            "400": {
+              "description": "Bad request."
+            },
+            "401": {
+              "description": "Unauthorized."
+            },
+            "404":{
+              "description":"Not Found."
+            },
+            "500": {
+              "description": "Internal Server Error."
+            }
+          }
+        }
+      },
+
+      "/admin/employe": {
+        "get": {
+          "summary": "Get All Employees",
+          "description": "Retrieve a list of all Employees for logged in Admin.",
+          "responses": {
+            "201": {
+              "description": "Successful response."
+            },
+            "401": {
+              "description": "Unauthorized."
+            },
+            "500": {
+              "description": "Internal Server Error."
+            }
+          }
+        }
+      },
+      
+      "/admin/employe/add": {
+        "post": {
+          "summary": "Add Employee",
+          "description": "Endpoint for creating a new employee.",
+          "requestBody": {
+            "description": "Employee details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "example": "Employee Name"
+                    },
+                    
+                    "email": {
+                      "type": "string",
+                      "example": "rohan321@gmail.com"
+                    },
+                    "phone": {
+                      "type": "string",
+                      "example": "1234567890"
+                    }
+                    
+                  },
+                  "required": ["name", "email", "phone"]
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Employee created successfully."
+            },
+            "400": {
+              "description": "Bad request."
+            },
+            "401": {
+              "description": "Unauthorized."
+            },
+            "500": {
+              "description": "Internal Server Error."
+            }
+          }
+        }
+      },
+      "/admin/employe/{id}": {
+        "get": {
+          "summary": "Get Employee by ID",
+          "description": "Retrieve a Employee by their ID.",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "type": "integer",
+              "required": true,
+              "description": "Employee ID"
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "User found and retrieved successfully."
+            },
+            "401": {
+              "description": "Unauthorized."
+            },
+            "404": {
+              "description": "User not found."
+            }
+          }
+        }
+      },
+      "/admin/employe/{id2}": {
+        "delete": {
+          "summary": "Delete Employee by ID",
+          "description": "Delete a Employee by their ID.",
+          "parameters": [
+            {
+              "name": "id2",
+              "in": "path",
+              "type": "integer",
+              "required": true,
+              "description": "Employee ID"
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "User deleted successfully."
+            },
+            "401": {
+              "description": "Unauthorized."
+            },
+            
+            "404": {
+              "description": "User not found."
+            },
+            "500": {
+              "description": "Internal Server Error."
+            }
+          }
+        }
+      }
+      ,
+      
+      "/admin/employe/{id3}": {
+        "put": {
+          "summary": "Update Employee",
+          "description": "Endpoint for updating employee information.",
+          "parameters": [
+            {
+              "name": "id3",
+              "in": "path",
+              "type": "integer",
+              "required": true,
+              "description": "Employee ID"
+            }
+          ],
+          "requestBody": {
+            "description": "Updated employee details.",
+            
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "example": "Updated Employee Name"
+                    },
+                      "email": {
+                        "type": "string",
+                        "example": "rohan321@gmail.com"
+                      },
+                    "phone": {
+                      "type": "string",
+                      "example": "1234567890"
+                    }
+                  },
+                  "required": ["name","email","phone"]
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Employee information updated successfully."
+            },
+            
+            "401": {
+              "description": "Unauthorized."
+            },
+            "404": {
+              "description": "User not found."
+            },
+            "500": {
+              "description": "Internal Server Error."
+            }
+          }
+        }
+      },
+     
+   
+      
+      
+      "/self/update/{id4}": {
+        "put": {
+          "summary": "Update Self Inofrmation",
+          "description": "Endpoint for updating self information.",
+          "parameters": [
+            {
+              "name": "id4",
+              "in": "path",
+              "type": "integer",
+              "required": true,
+              "description": "User ID"
+            }
+          ],
+          "requestBody": {
+            "description": "Updated employee details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "example": "Updated Employee Name"
+                    },
+                      "email": {
+                        "type": "string",
+                        "example": "rohan321@gmail.com"
+                      },
+                    "phone": {
+                      "type": "string",
+                      "example": "1234567890"
+                    }
+                  },
+                  "required": ["name","email","phone"]
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Employee information updated successfully."
+            },
+            "400": {
+              "description": "Bad request."
+            },
+            "401": {
+              "description": "Unauthorized."
+            },
+            "500": {
+              "description": "Internal Server Error."
+            }
+          }
+        }
+      }
+
+
+    }
+  }
+  

@@ -1,0 +1,46 @@
+{
+  "name": "block",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js",
+    "new-migration": "npx sequelize-cli migration:generate --name",
+    "migration-up": "npx sequelize db:migrate",
+    "migration-all-down": "npx sequelize db:migrate:undo:all",
+    "migration-down": "npx sequelize db:migrate:undo --name",
+    "seed-up": "npx sequelize db:seed --seed",
+    "seed-all-up": "npx sequelize db:seed:all",
+    "seed-down": "npx sequelize db:seed:undo",
+    "seed-all-down": "npx sequelize db:seed:undo:all",
+    "create-seed": "npx sequelize seed:generate",
+    "db-drop": "npx sequelize db:drop"
+  },
+  "author": "mudit",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "ethers": "^6.8.0",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "joi": "^17.11.0",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1",
+    "pg": "^8.11.3",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.33.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.52.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.29.0",
+    "prettier": "3.0.3",
+    "sequelize-cli": "^6.6.1"
+  }
+}
